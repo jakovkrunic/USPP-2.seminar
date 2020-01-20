@@ -26,11 +26,11 @@ for i in range(300, 400):
 points_x = points[:,0]
 points_y = points[:,1]
 
-#fig = plt.figure()
-#ax = fig.add_subplot(1, 1, 1)
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
 
-#ax.scatter(points_x, points_y)
-#plt.show()
+ax.scatter(points_x, points_y)
+plt.show()
 
 A = np.zeros((400,400))
 
@@ -45,9 +45,9 @@ A = A / (A.max())
 for i in range(0, 400):
     A[i, i] = 1
 
-#plt.matshow(A)
-#plt.colorbar()
-#plt.show()
+plt.matshow(A)
+plt.colorbar()
+plt.show()
 
 X = clustering.clustering(A, 4, 1)
 
