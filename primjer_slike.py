@@ -11,27 +11,36 @@ import cv2
 M = cv2.imread('E:/GitHub/USPP-2.seminar/primjer_slike/walrus1.png')
 #print(M)
 
+plt.imshow(M)
+plt.axis('off')
+plt.show()
+
 rows = M.shape[0]
 columns = M.shape[1]
 
 M = M.reshape((rows*columns, 3))
 
-#print(M)
-
 n = rows * columns
 print(n)
-A = np.zeros((n,n), dtype=np.float32)
+A = np.zeros((n,n), dtype=np.float64)
 #A = A.reshape((n,n))
 
 for i in range(0, n):
     for j in range(0, n):
        # print(j)
-        A[i,j] = np.linalg.norm(M[i]-M[j])
-        A[i,j] = A[i,j]**2
+        #print(M[i])
+        A[i,j] = np.linalg.norm(M[i]-M[j]) / 50
+        #A[i,j] = A[i,j]**2
         A[i,j] = math.exp(-A[i,j])
+        #if (A[i,j] != 1.0):
+            #print(M[i])
+            #print(M[j])
+            #print(np.linalg.norm(M[i]-M[j]))
+            #print(np.linalg.norm(M[i]-M[j]))
+            #print(A[i,j])
     print('+++' + str(i) + '+++')
 
-X = clustering.clustering(A, 3, 1)
+X = clustering.clustering(A, 3, 0.00001)
 
 M = M.reshape((rows, columns, 3))
 
@@ -43,4 +52,6 @@ for i in range(0, n):
     M[a,b,0] = M[a,b,1] = M[a,b,2] = 0
     M[a,b,stavi] = 255
 
-cv2.imshow('AWAW morzek', M)
+plt.imshow(M)
+plt.axis('off')
+plt.show()
